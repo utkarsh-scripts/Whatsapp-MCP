@@ -7,5 +7,6 @@ messages.db
 .bridge-token
 store/
 media/
+whatsapp-bridge/whatsapp-bridge
 .venv/
 __pycache__/

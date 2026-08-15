@@ -1,8 +1,9 @@
 #!/bin/sh
 set -eu
 
-state_root="${WHATSAPP_MCP_HOME:-$HOME/.local/share/whatsapp-mcp}"
-bridge="$state_root/upstream/whatsapp-bridge/whatsapp-bridge"
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
+bridge="$repo_root/whatsapp-bridge/whatsapp-bridge"
 
 if [ ! -x "$bridge" ]; then
   echo "Bridge not found. Run scripts/setup-macos.sh first." >&2

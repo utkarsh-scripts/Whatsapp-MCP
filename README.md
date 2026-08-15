@@ -50,8 +50,8 @@ Local Go bridge powered by whatsmeow
                     or another MCP client
 ```
 
-1. The installer downloads the bridge source into a local application-data
-   directory and builds it on the user's Mac.
+1. The installer builds the included Go bridge on the user's Mac and resolves
+   the included Python MCP server's locked dependencies.
 2. The user starts the bridge and scans its temporary QR code from **WhatsApp →
    Settings → Linked Devices → Link a Device**.
 3. WhatsApp treats the bridge as another linked device and supplies a recent
@@ -70,7 +70,7 @@ Any client that can launch a local stdio MCP server can use the installed
 server. The underlying launch command is:
 
 ```bash
-uv --directory ~/.local/share/whatsapp-mcp/upstream/whatsapp-mcp-server \
+uv --directory /path/to/Whatsapp-MCP/whatsapp-mcp-server \
   run --frozen main.py
 ```
 
@@ -78,7 +78,7 @@ uv --directory ~/.local/share/whatsapp-mcp/upstream/whatsapp-mcp-server \
 
 ```bash
 codex mcp add whatsapp -- uv \
-  --directory ~/.local/share/whatsapp-mcp/upstream/whatsapp-mcp-server \
+  --directory /path/to/Whatsapp-MCP/whatsapp-mcp-server \
   run --frozen main.py
 ```
 
@@ -96,7 +96,7 @@ Add a stdio server to `claude_desktop_config.json`:
       "command": "uv",
       "args": [
         "--directory",
-        "/Users/YOU/.local/share/whatsapp-mcp/upstream/whatsapp-mcp-server",
+        "/path/to/Whatsapp-MCP/whatsapp-mcp-server",
         "run",
         "--frozen",
         "main.py"
@@ -127,10 +127,10 @@ cd whatsapp-mcp
 scripts/setup-macos.sh
 ```
 
-The script installs the bridge and MCP server at
-`~/.local/share/whatsapp-mcp/upstream`, builds the bridge, and resolves the
-locked Python environment. It prints client configuration instructions but
-does not modify every installed MCP client automatically.
+The repository already contains the bridge and MCP server source. The setup
+script builds the bridge in place and resolves the locked Python environment.
+It prints client configuration instructions but does not modify every installed
+MCP client automatically.
 
 Pair the account:
 
@@ -143,7 +143,7 @@ bridge running at login with the installed macOS service helper:
 
 ```bash
 WEBHOOK_ENABLED=false \
-  ~/.local/share/whatsapp-mcp/upstream/scripts/install-launchd-macos.sh
+  scripts/install-launchd-macos.sh
 ```
 
 Continuous background synchronization is optional and should be enabled only
@@ -180,7 +180,7 @@ That is powerful and carries real risk.
 
 This project is **unofficial**. It is not affiliated with, endorsed by, or
 supported by Meta or WhatsApp. It uses the linked-device protocol through the
-upstream `whatsmeow` library. Protocol changes or enforcement of WhatsApp's
+`whatsmeow` library. Protocol changes or enforcement of WhatsApp's
 terms may affect functionality or account access.
 
 ## History limitations
@@ -192,10 +192,10 @@ downloads, inspects, or transcribes them.
 
 ## Local data locations
 
-- Upstream checkout: `~/.local/share/whatsapp-mcp/upstream`
-- Session database: `.../whatsapp-bridge/store/whatsapp.db`
-- Message cache: `.../whatsapp-bridge/store/messages.db`
-- Bridge token: `.../whatsapp-bridge/store/.bridge-token`
+- Project checkout: the directory where you cloned this repository
+- Session database: `whatsapp-bridge/store/whatsapp.db`
+- Message cache: `whatsapp-bridge/store/messages.db`
+- Bridge token: `whatsapp-bridge/store/.bridge-token`
 - Service support: `~/Library/Application Support/whatsapp-mcp/`
 - Logs: `~/Library/Logs/whatsapp-mcp/`
 
@@ -210,17 +210,14 @@ codex mcp remove whatsapp
 Stop and remove the optional macOS services:
 
 ```bash
-~/.local/share/whatsapp-mcp/upstream/scripts/uninstall-launchd-macos.sh
+scripts/uninstall-launchd-macos.sh
 ```
 
 The uninstaller intentionally preserves the local WhatsApp session and
 message databases. Remove that application-data directory separately only when
 you intend to unlink the integration and erase its synchronized archive.
 
-## Third-party components
+## Licensing
 
-The installer retrieves the bridge and MCP server implementation from
-[`verygoodplugins/whatsapp-mcp`](https://github.com/verygoodplugins/whatsapp-mcp)
-at installation time. Those components retain their own license, contributors,
-security notices, and release history. The packaging, documentation, and Codex
-Library integration in this repository are licensed under MIT.
+This repository is licensed under MIT. Required notices for incorporated
+third-party code are preserved in `THIRD_PARTY_LICENSES/`.
