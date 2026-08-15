@@ -6,12 +6,9 @@ tools such as Codex, Claude Desktop, Cursor, and other stdio MCP clients to
 search conversations, analyze synchronized message history, find contacts and
 groups, and send user-approved messages and media.
 
-This repository is a client-neutral installer, configuration layer, and safety
-guide for the actively maintained
-[`verygoodplugins/whatsapp-mcp`](https://github.com/verygoodplugins/whatsapp-mcp)
-implementation. The upstream project provides the Go WhatsApp bridge and Python
-FastMCP server; this distribution provides a simpler macOS setup, portable MCP
-launch scripts, Codex Library metadata, and conservative agent instructions.
+This repository provides a client-neutral WhatsApp MCP distribution with a
+streamlined macOS installer, portable MCP launch scripts, Codex Library
+metadata, practical safety guidance, and conservative agent instructions.
 
 Public repository: <https://github.com/utkarsh-scripts/whatsapp-mcp>
 
@@ -53,8 +50,8 @@ Local Go bridge powered by whatsmeow
                     or another MCP client
 ```
 
-1. The installer downloads the pinned upstream source into a local application
-   data directory and builds the Go bridge.
+1. The installer downloads the bridge source into a local application-data
+   directory and builds it on the user's Mac.
 2. The user starts the bridge and scans its temporary QR code from **WhatsApp →
    Settings → Linked Devices → Link a Device**.
 3. WhatsApp treats the bridge as another linked device and supplies a recent
@@ -130,7 +127,7 @@ cd whatsapp-mcp
 scripts/setup-macos.sh
 ```
 
-The script installs the upstream project at
+The script installs the bridge and MCP server at
 `~/.local/share/whatsapp-mcp/upstream`, builds the bridge, and resolves the
 locked Python environment. It prints client configuration instructions but
 does not modify every installed MCP client automatically.
@@ -142,7 +139,7 @@ scripts/pair.sh
 ```
 
 Scan the displayed QR code. After the first successful sync, you may keep the
-bridge running at login with the upstream macOS service helper:
+bridge running at login with the installed macOS service helper:
 
 ```bash
 WEBHOOK_ENABLED=false \
@@ -216,14 +213,14 @@ Stop and remove the optional macOS services:
 ~/.local/share/whatsapp-mcp/upstream/scripts/uninstall-launchd-macos.sh
 ```
 
-The upstream uninstaller intentionally preserves the local WhatsApp session and
+The uninstaller intentionally preserves the local WhatsApp session and
 message databases. Remove that application-data directory separately only when
 you intend to unlink the integration and erase its synchronized archive.
 
-## Upstream attribution
+## Third-party components
 
-The WhatsApp bridge and MCP tool implementation are maintained at
+The installer retrieves the bridge and MCP server implementation from
 [`verygoodplugins/whatsapp-mcp`](https://github.com/verygoodplugins/whatsapp-mcp)
-and retain their own license, contributors, security notices, and release
-history. This repository contains the client-neutral packaging, documentation,
-and Codex Library integration and is licensed under MIT.
+at installation time. Those components retain their own license, contributors,
+security notices, and release history. The packaging, documentation, and Codex
+Library integration in this repository are licensed under MIT.
