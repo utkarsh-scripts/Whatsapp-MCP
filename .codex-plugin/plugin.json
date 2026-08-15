@@ -1,0 +1,30 @@
+{
+  "name": "whatsapp-mcp",
+  "version": "0.1.0",
+  "description": "A local MCP integration for reading, searching, analyzing, and sending personal WhatsApp messages.",
+  "author": {
+    "name": "Utkarsh Modi",
+    "url": "https://github.com/utkarsh-scripts"
+  },
+  "homepage": "https://github.com/utkarsh-scripts/whatsapp-mcp",
+  "repository": "https://github.com/utkarsh-scripts/whatsapp-mcp",
+  "license": "MIT",
+  "keywords": ["whatsapp", "codex", "mcp", "messaging", "personal-assistant"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "WhatsApp MCP",
+    "shortDescription": "Connect MCP-compatible assistants to personal WhatsApp.",
+    "longDescription": "A privacy-conscious local MCP integration for personal WhatsApp. Connect any compatible AI client through WhatsApp's linked-device flow, search and analyze locally synchronized conversations, find contacts and groups, and send approved messages and media. This distribution packages and documents the maintained Very Good Plugins WhatsApp MCP implementation; authentication credentials and chat databases stay on the user's computer.",
+    "developerName": "Utkarsh Modi",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Search", "Interactive"],
+    "websiteURL": "https://github.com/utkarsh-scripts/whatsapp-mcp",
+    "defaultPrompt": [
+      "Summarize my recent WhatsApp conversations.",
+      "Find unanswered WhatsApp messages.",
+      "Draft a WhatsApp reply and ask before sending."
+    ],
+    "brandColor": "#25D366"
+  }
+}

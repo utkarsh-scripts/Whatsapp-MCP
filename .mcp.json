@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "whatsapp": {
+      "command": "sh",
+      "args": ["scripts/run-mcp.sh"]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.DS_Store
+.local/
+config/upstream-path
+*.log
+whatsapp.db
+messages.db
+.bridge-token
+store/
+media/
+.venv/
+__pycache__/
